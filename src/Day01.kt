@@ -1,7 +1,7 @@
 fun main() {
     fun part1(input: List<String>): Int {
-        val leftList = mutableListOf<Int>();
-        val rightList = mutableListOf<Int>();
+        val leftList = mutableListOf<Int>()
+        val rightList = mutableListOf<Int>()
         input.forEach {
             val (left, right) = it.split("   ")
             leftList.add(left.toInt())
@@ -10,7 +10,7 @@ fun main() {
         leftList.sort()
         rightList.sort()
 
-        var sum = 0;
+        var sum = 0
         leftList.forEachIndexed { index, item ->
             sum += if (item <= rightList[index]) {
                 rightList[index] - item
@@ -22,14 +22,14 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        val leftList = mutableListOf<Int>();
-        val rightList = mutableListOf<Int>();
+        val leftList = mutableListOf<Int>()
+        val rightList = mutableListOf<Int>()
         input.forEach {
             val (left, right) = it.split("   ")
             leftList.add(left.toInt())
             rightList.add(right.toInt())
         }
-        var sum = 0;
+        var sum = 0
         leftList.forEach {
             sum += it * rightList.count { item ->
                 item == it
