@@ -10,14 +10,14 @@ fun main() {
     fun part2(input: List<String>): Int {
         var skip = false
         var result = 0
-        Regex("(do\\(\\)|don't\\(\\)|mul\\((\\d{1,3}),(\\d{1,3})\\))").findAll(input.joinToString("\n"))
+        Regex("do\\(\\)|don't\\(\\)|mul\\((\\d{1,3}),(\\d{1,3})\\)").findAll(input.joinToString("\n"))
             .forEach {
-                when (it.groupValues[1]) {
+                when (it.groupValues[0]) {
                     in "do()" -> skip = false
                     in "don't()" -> skip = true
                     else -> {
                         if (!skip) {
-                            result += it.groupValues[2].toInt() * it.groupValues[3].toInt()
+                            result += it.groupValues[1].toInt() * it.groupValues[2].toInt()
                         }
                     }
                 }
