@@ -11,10 +11,10 @@ private data class Step(val x: Int, val y: Int, val height: Int) {
 
 private fun canReach(start: Step, end: Step, map: Map<Pair<Int, Int>, Step>): Boolean {
     val distanceMap = mutableMapOf<Step, Int>()
-    var toVisit = PriorityQueue<Step>(compareBy { distanceMap.getOrDefault(it, Int.MAX_VALUE / 2) })
+    val toVisit = PriorityQueue<Step>(compareBy { distanceMap.getOrDefault(it, Int.MAX_VALUE / 2) })
     distanceMap[start] = 0
     toVisit.add(start)
-    while (!toVisit.isEmpty()) {
+    while (toVisit.isNotEmpty()) {
         val currentStep = toVisit.poll()
         if (currentStep == end) return true
         val currentDistance = distanceMap[currentStep]!!
@@ -40,8 +40,8 @@ private fun canReach(start: Step, end: Step, map: Map<Pair<Int, Int>, Step>): Bo
 private fun countTrails(end: Step, map: Map<Pair<Int, Int>, Step>): Long {
     var count = 0L
 
-    var toVisit = mutableListOf(end)
-    while (!toVisit.isEmpty()) {
+    val toVisit = mutableListOf(end)
+    while (toVisit.isNotEmpty()) {
         val currentTrail = toVisit.removeFirst()
         if (currentTrail.height == 0) count++
 
