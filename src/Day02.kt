@@ -1,3 +1,8 @@
+package nl.openweb.day02
+
+import nl.openweb.println
+import nl.openweb.readInput
+
 fun main() {
     fun part1(data: List<String>): Int {
         return data.count { line ->

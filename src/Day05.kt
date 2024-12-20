@@ -1,3 +1,8 @@
+package nl.openweb.day05
+
+import nl.openweb.println
+import nl.openweb.readInput
+
 fun main() {
     fun isValidUpdate(update: List<String>, orderingRules: Map<String, List<String>>): Boolean =
         update

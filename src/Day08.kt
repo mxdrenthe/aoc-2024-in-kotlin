@@ -1,3 +1,7 @@
+package nl.openweb.day08
+
+import nl.openweb.println
+import nl.openweb.readInput
 import kotlin.math.abs
 import kotlin.math.min
 
@@ -21,7 +25,12 @@ fun main() {
         return listOf(firstAntenna + offset, secondAntenna - offset)
     }
 
-    fun getAntiNodes(firstAntenna: Position, secondAntenna: Position, width: Int, height: Int): List<Position> {
+    fun getAntiNodes(
+        firstAntenna: Position,
+        secondAntenna: Position,
+        width: Int,
+        height: Int
+    ): List<Position> {
         val offset = firstAntenna - secondAntenna
         val maxMovementVert = abs(height / offset.x)
         val maxMovementHoriz = abs(width / offset.y)
@@ -41,7 +50,12 @@ fun main() {
                 line
                     .toCharArray()
                     .withIndex()
-                    .map { (j, character) -> if (character != '.') character to Position(i, j) else null }
+                    .map { (j, character) ->
+                        if (character != '.') character to Position(
+                            i,
+                            j
+                        ) else null
+                    }
             }
             .filterNotNull()
             .groupBy({ it.first }, { it.second })
@@ -63,7 +77,12 @@ fun main() {
                 line
                     .toCharArray()
                     .withIndex()
-                    .map { (j, character) -> if (character != '.') character to Position(i, j) else null }
+                    .map { (j, character) ->
+                        if (character != '.') character to Position(
+                            i,
+                            j
+                        ) else null
+                    }
             }
             .filterNotNull()
             .groupBy({ it.first }, { it.second })
@@ -75,11 +94,11 @@ fun main() {
             .count()
     }
 
-    // Or read a large test input from the `src/Day01_test.txt` file:
+    // Or read a large test input from the `src/Day08_test.txt` file:
     val testInput = readInput("Day08_test")
     check(part1(testInput) == 14)
 
-    // Read the input from the `src/Day01.txt` file.
+    // Read the input from the `src/Day08.txt` file.
     val input = readInput("Day08")
     part1(input).println()
     part2(input).println()

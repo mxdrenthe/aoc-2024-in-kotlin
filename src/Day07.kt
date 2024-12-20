@@ -1,3 +1,8 @@
+package nl.openweb.day07
+
+import nl.openweb.println
+import nl.openweb.readInput
+
 fun main() {
     fun part1(input: List<String>): Long {
         val equations = input.filter { it.isNotEmpty() }.map { line ->

@@ -1,3 +1,8 @@
+package nl.openweb.day01
+
+import nl.openweb.println
+import nl.openweb.readInput
+
 fun main() {
     fun part1(input: List<String>): Int {
         val leftList = mutableListOf<Int>()

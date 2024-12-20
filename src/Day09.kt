@@ -1,3 +1,8 @@
+package nl.openweb.day09
+
+import nl.openweb.println
+import nl.openweb.readInput
+
 private sealed class Block {
     data class File(val id: Long) : Block()
     class Space : Block()
@@ -102,12 +107,12 @@ fun main() {
             }
     }
 
-    // Or read a large test input from the `src/Day01_test.txt` file:
+    // Or read a large test input from the `src/Day09_test.txt` file:
     val testInput = readInput("Day09_test")
     check(part1(testInput) == 1928L)
     check(part2(testInput) == 2858L)
 
-    // Read the input from the `src/Day01.txt` file.
+    // Read the input from the `src/Day09.txt` file.
     val input = readInput("Day09")
     part1(input).println()
     part2(input).println()

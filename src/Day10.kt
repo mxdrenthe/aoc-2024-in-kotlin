@@ -1,3 +1,7 @@
+package nl.openweb.day10
+
+import nl.openweb.println
+import nl.openweb.readInput
 import java.util.*
 
 private data class Step(val x: Int, val y: Int, val height: Int) {
@@ -85,11 +89,11 @@ fun main() {
             .sumOf { countTrails(it, map) }
     }
 
-    // Or read a large test input from the `src/Day01_test.txt` file:
+    // Or read a large test input from the `src/Day10_test.txt` file:
     val testInput = readInput("Day10_test")
     check(part1(testInput) == 36L)
 
-    // Read the input from the `src/Day01.txt` file.
+    // Read the input from the `src/Day10.txt` file.
     val input = readInput("Day10")
     part1(input).println()
     part2(input).println()

@@ -1,3 +1,8 @@
+package nl.openweb.day04
+
+import nl.openweb.println
+import nl.openweb.readInput
+
 fun main() {
     data class Coordinate(val x: Int, val y: Int)
 
@@ -50,11 +55,13 @@ fun main() {
             )
         }
 
-        fun findACoordsInMas(grid: List<List<Char>>, position: Coordinate) = getPossibleLocations(position)
-            .mapNotNull {
-                val lettersFound = it.map(grid::nestedGetOrNull)
-                if (lettersFound.any { it == null }) null else (if (lettersFound.joinToString("") == "MAS") it[1] else null)
-            }
+        fun findACoordsInMas(grid: List<List<Char>>, position: Coordinate) =
+            getPossibleLocations(position)
+                .mapNotNull {
+                    val lettersFound = it.map(grid::nestedGetOrNull)
+                    if (lettersFound.any { it == null }) null else (if (lettersFound.joinToString("") == "MAS") it[1] else null)
+                }
+
         val grid = input.map { it.toList() }
 
         return grid

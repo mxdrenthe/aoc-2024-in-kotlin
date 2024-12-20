@@ -1,3 +1,8 @@
+package nl.openweb.day03
+
+import nl.openweb.println
+import nl.openweb.readInput
+
 fun main() {
     fun part1(input: List<String>): Int {
         return Regex("mul\\((\\d{1,3}),(\\d{1,3})\\)").findAll(input.joinToString("\n"))

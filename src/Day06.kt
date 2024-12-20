@@ -1,8 +1,13 @@
-enum class Tile {
+package nl.openweb.day06
+
+import nl.openweb.println
+import nl.openweb.readInput
+
+private enum class Tile {
     EMPTY, OBJECT, START
 }
 
-enum class Direction {
+private enum class Direction {
     UP {
         override fun turnRight() = RIGHT
     },
@@ -18,11 +23,16 @@ enum class Direction {
 
     abstract fun turnRight(): Direction
     fun getAllDirectionsFrom(): List<Direction> {
-        return listOf(this, turnRight(), turnRight().turnRight(), turnRight().turnRight().turnRight())
+        return listOf(
+            this,
+            turnRight(),
+            turnRight().turnRight(),
+            turnRight().turnRight().turnRight()
+        )
     }
 }
 
-data class Position(val y: Int, val x: Int) {
+private data class Position(val y: Int, val x: Int) {
     fun getNextValidPosition(
         direction: Direction,
         grid: List<List<Tile>>
@@ -98,7 +108,11 @@ private fun doesItLoop(
         if ((currentPosition to currentDirection) in visited) return true
         visited.add(currentPosition to currentDirection)
 
-        val (nextPosition, nextDir) = currentPosition.getNextValidPosition(currentDirection, extraObstacle, grid)
+        val (nextPosition, nextDir) = currentPosition.getNextValidPosition(
+            currentDirection,
+            extraObstacle,
+            grid
+        )
         if (nextPosition.isOutsideGrid(grid)) return false
 
         currentPosition = nextPosition
