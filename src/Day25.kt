@@ -31,14 +31,9 @@ fun main() {
             .sumOf { key -> locks.count { lock -> key.overlaps(lock) } }
     }
 
-    fun part2(input: String): Int {
-        return input.length
-    }
-
     val testInput = readAllInput("Day25_test")
     check(part1(testInput) == 3)
 
     val input = readAllInput("Day25")
     part1(input).println()
-    part2(input).println()
 }
