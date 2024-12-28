@@ -35,6 +35,7 @@ private data class Position(val x: Int, val y: Int) {
         return rightNeighbour.second == type
     }
 }
+
 private data class Region(val type: Char, val plots: Set<Position>)
 private typealias Map = List<List<Pair<Position, Char>>>
 
@@ -58,12 +59,14 @@ private fun getNumberOfSides(region: Region, map: Map): Int {
                 belowCorrectType = false
                 return@forEach
             }
-            aboveCorrectType = countSides(plot.first.isAboveType(map, region.type), aboveCorrectType) {
-                horizontalSides++
-            }
-            belowCorrectType = countSides(plot.first.isBelowType(map, region.type), belowCorrectType) {
-                horizontalSides++
-            }
+            aboveCorrectType =
+                countSides(plot.first.isAboveType(map, region.type), aboveCorrectType) {
+                    horizontalSides++
+                }
+            belowCorrectType =
+                countSides(plot.first.isBelowType(map, region.type), belowCorrectType) {
+                    horizontalSides++
+                }
         }
     }
 
@@ -80,9 +83,10 @@ private fun getNumberOfSides(region: Region, map: Map): Int {
             leftCorrectType = countSides(plot.first.isLeftType(map, region.type), leftCorrectType) {
                 verticalSides++
             }
-            rightCorrectType = countSides(plot.first.isRightType(map, region.type), rightCorrectType) {
-                verticalSides++
-            }
+            rightCorrectType =
+                countSides(plot.first.isRightType(map, region.type), rightCorrectType) {
+                    verticalSides++
+                }
         }
     }
 

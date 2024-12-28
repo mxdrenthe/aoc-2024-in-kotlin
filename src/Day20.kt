@@ -2,10 +2,11 @@ package nl.openweb.day20
 
 import nl.openweb.println
 import nl.openweb.readAllInput
+import java.util.*
 import kotlin.math.abs
 
-import java.util.PriorityQueue
 private const val MAX_CHEAT_DISTANCE = 20
+
 private enum class EntityType { TRACK, WALL, START, END }
 private data class Position(val x: Int, val y: Int) {
     fun getValidNeighbours(map: Map): List<Position> = listOf(
@@ -119,7 +120,11 @@ private fun getLongCheats(path: Path, map: Map, memo: HashMap<Position, Int>): L
                 }
                 if (!memo.containsKey(cheatEndPosition)) memo[cheatEndPosition] = cheatTime
                 val cheatDistance = position.getDistance(cheatEndPosition)
-                Cheat(position, cheatEndPosition, path.count() - cheatTime - i - (1 + cheatDistance))
+                Cheat(
+                    position,
+                    cheatEndPosition,
+                    path.count() - cheatTime - i - (1 + cheatDistance)
+                )
             }
     }
 

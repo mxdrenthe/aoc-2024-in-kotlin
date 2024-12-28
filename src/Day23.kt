@@ -3,7 +3,11 @@ package nl.openweb.day23
 import nl.openweb.println
 import nl.openweb.readInput
 
-private fun getAllConnected(from: String, map: Map<String, List<String>>, groupCount: Int): List<String> {
+private fun getAllConnected(
+    from: String,
+    map: Map<String, List<String>>,
+    groupCount: Int
+): List<String> {
     var groups = listOf(listOf(from))
 
     while (groups.first().count() < groupCount) {
@@ -35,12 +39,14 @@ private fun getAllCliques(
 
     remainingNodes.toList().forEach { v ->
         val neighbours = graph[v]?.toSet() ?: emptySet()
-        results.addAll(getAllCliques(
-            graph,
-            currentClique + v,
-            remainingNodes.intersect(neighbours).toMutableSet(),
-            visitedNodes.intersect(neighbours).toMutableSet()
-        ))
+        results.addAll(
+            getAllCliques(
+                graph,
+                currentClique + v,
+                remainingNodes.intersect(neighbours).toMutableSet(),
+                visitedNodes.intersect(neighbours).toMutableSet()
+            )
+        )
         remainingNodes.remove(v)
         visitedNodes.add(v)
     }
@@ -66,7 +72,7 @@ fun main() {
             .flatMap {
                 val (from, towards) = it.split("-")
                 listOf(from to towards, towards to from)
-            }.groupBy ({ it.first }, { it.second })
+            }.groupBy({ it.first }, { it.second })
 
         return getAllCliques(map, emptySet(), map.keys as MutableSet<String>, mutableSetOf())
             .maxBy { it.count() }

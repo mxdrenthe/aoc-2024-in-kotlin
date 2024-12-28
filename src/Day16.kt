@@ -2,7 +2,18 @@ package nl.openweb.day16
 
 import nl.openweb.println
 import nl.openweb.readInput
-import java.util.PriorityQueue
+import java.util.*
+import kotlin.collections.ArrayDeque
+import kotlin.collections.HashMap
+import kotlin.collections.HashSet
+import kotlin.collections.List
+import kotlin.collections.count
+import kotlin.collections.find
+import kotlin.collections.flatMapIndexed
+import kotlin.collections.isNotEmpty
+import kotlin.collections.listOf
+import kotlin.collections.set
+import kotlin.collections.toMap
 
 private data class Position(val x: Int, val y: Int)
 private enum class Direction { NORTH, EAST, SOUTH, WEST }
@@ -96,7 +107,12 @@ private fun getLowestScore(start: State, end: Position, map: Map): Long {
     return Long.MAX_VALUE
 }
 
-private fun getAllShortestPathLengths(start: Position, end: Position, targetScore: Long, map: Map): Long {
+private fun getAllShortestPathLengths(
+    start: Position,
+    end: Position,
+    targetScore: Long,
+    map: Map
+): Long {
     val visited = HashSet<State>()
     val queue = ArrayDeque<Pair<State, Long>>()
     val validPositions = HashSet<Position>()
@@ -114,7 +130,7 @@ private fun getAllShortestPathLengths(start: Position, end: Position, targetScor
         val nextMoves = currentState.next()
         for ((nextState, cost) in nextMoves) {
             if (map[nextState.first] == Entity.WALL || visited.contains(nextState)) continue
-            if( currentScore + cost + getLowestScore(nextState, end, map) > targetScore) continue
+            if (currentScore + cost + getLowestScore(nextState, end, map) > targetScore) continue
 
             val nextScore = currentScore + cost
             queue.add(nextState to nextScore)

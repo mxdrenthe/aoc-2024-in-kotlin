@@ -2,11 +2,11 @@ package nl.openweb.day25
 
 import nl.openweb.println
 import nl.openweb.readAllInput
-import nl.openweb.readInput
 
 private enum class ObjectType { KEY, LOCK }
 private data class Object(val type: ObjectType, val value: List<Int>) {
-    fun overlaps(other: Object): Boolean = value.zip(other.value).all { (a, b) -> a + b <= other.value.count() }
+    fun overlaps(other: Object): Boolean =
+        value.zip(other.value).all { (a, b) -> a + b <= other.value.count() }
 }
 
 private fun getObjects(input: String): List<Object> = input.split("\r\n\r\n")

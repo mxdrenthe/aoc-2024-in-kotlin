@@ -94,7 +94,12 @@ private fun findFirstOutputFrom(circuit: Circuits, wire: String): String? {
     val parents = circuit.filter { it.input1 == wire || it.input2 == wire }
 
     val validOutput = parents.find { it.name.first() == 'z' }
-    if (validOutput == null) return parents.firstNotNullOfOrNull { findFirstOutputFrom(circuit, it.name) }
+    if (validOutput == null) return parents.firstNotNullOfOrNull {
+        findFirstOutputFrom(
+            circuit,
+            it.name
+        )
+    }
 
     val previousOutputNumber = validOutput.name.drop(1).toInt() - 1
     return "z" + previousOutputNumber.toString().padStart(2, '0')
@@ -126,7 +131,8 @@ fun main() {
         }
 
         invalidMidWires.forEach { wire ->
-            val toSwitch = invalidEndWires.first { it.name == findFirstOutputFrom(circuit, wire.name) }
+            val toSwitch =
+                invalidEndWires.first { it.name == findFirstOutputFrom(circuit, wire.name) }
             val temp = wire.name
             wire.name = toSwitch.name
             toSwitch.name = temp

@@ -29,7 +29,8 @@ private fun parseRobot(line: String): Robot {
 }
 
 private fun getCountInQuadrants(positions: List<Vec2>, mapSize: Vec2): List<Int> {
-    fun getCountIn(xRange: IntRange, yRange: IntRange): Int = positions.count { it.x in xRange && it.y in yRange }
+    fun getCountIn(xRange: IntRange, yRange: IntRange): Int =
+        positions.count { it.x in xRange && it.y in yRange }
 
     return listOf(
         getCountIn(0 until mapSize.x / 2, 0 until mapSize.y / 2),
@@ -40,11 +41,15 @@ private fun getCountInQuadrants(positions: List<Vec2>, mapSize: Vec2): List<Int>
 }
 
 private fun getEntropy(time: Int, robots: List<Robot>, mapSize: Vec2): Int =
-    getCountInEggQuadrants(robots.map { it.getPosAfter(time, mapSize) }, mapSize).fold(1, Int::times)
+    getCountInEggQuadrants(robots.map { it.getPosAfter(time, mapSize) }, mapSize).fold(
+        1,
+        Int::times
+    )
 
 
 private fun getCountInEggQuadrants(positions: List<Vec2>, mapSize: Vec2): List<Int> {
-    fun getCountIn(xRange: IntRange, yRange: IntRange): Int = positions.count { it.x in xRange && it.y in yRange }
+    fun getCountIn(xRange: IntRange, yRange: IntRange): Int =
+        positions.count { it.x in xRange && it.y in yRange }
 
     return listOf(
         getCountIn(
